@@ -2,7 +2,7 @@
 
 require "../connection/connection.php";
 
-$query =  "CREATE TABLE users(
+$query =  "CREATE TABLE IF NOT EXISTS users(
             id INT(11) AUTO_INCREMENT PRIMARY KEY,
             full_name VARCHAR(50) NOT NULL,
             email VARCHAR(50) NOT NULL,

@@ -9,9 +9,11 @@ class User extends UserSkeleton
     {
         global $conn;
 
+        $hashedPassword = hash('sha256', self::$password);
+
         $sql = "INSERT INTO users (fullname,email,password) VALUES (?,?,?)";
         $query = $conn->prepare($sql);
-        $query->bind_param("sss", self::$fullname, self::$email, self::$password);
+        $query->bind_param("sss", self::$fullname, self::$email, $hashedPassword);
         $query->execute();
 
         return true;
