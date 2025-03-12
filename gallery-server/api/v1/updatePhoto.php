@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../models/Photo.php';
+require __DIR__ . '../../models/Photo.php';
 
 
 $data = json_decode(file_get_contents('php://input'), true);
