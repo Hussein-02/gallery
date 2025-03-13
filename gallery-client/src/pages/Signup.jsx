@@ -4,9 +4,16 @@ import { useNavigate } from "react-router-dom";
 import "../css/styles.css";
 
 const Signup = () => {
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [fullname, setFullname] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  const [form, setForm] = useState({
+    full_name: "",
+    email: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -16,9 +23,9 @@ const Signup = () => {
       const response = await axios.post(
         "http://localhost/gallery/gallery-server/api/v1/signup.php",
         {
-          full_name: fullname,
-          email: email,
-          password: password,
+          full_name: form.full_name,
+          email: form.email,
+          password: form.password,
         },
         {
           headers: {
@@ -52,8 +59,13 @@ const Signup = () => {
               type="text"
               id="fullname"
               name="fullname"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+              // value={fullname}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  full_name: e.target.value,
+                });
+              }}
             />
           </div>
 
@@ -63,8 +75,13 @@ const Signup = () => {
               type="text"
               id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              // value={email}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  email: e.target.value,
+                });
+              }}
             />
           </div>
 
@@ -74,8 +91,13 @@ const Signup = () => {
               type="password"
               id="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              // value={password}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  password: e.target.value,
+                });
+              }}
             />
           </div>
 

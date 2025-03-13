@@ -3,8 +3,12 @@ import axios from "axios";
 import "../css/styles.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,8 +17,8 @@ const Login = () => {
       const response = await axios.post(
         "http://localhost/gallery/gallery-server/api/v1/login.php",
         {
-          email: email,
-          password: password,
+          email: form.email,
+          password: form.password,
         },
         {
           headers: {
@@ -46,8 +50,13 @@ const Login = () => {
               type="text"
               id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              // value={email}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  email: e.target.value,
+                });
+              }}
             />
           </div>
 
@@ -57,8 +66,13 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              // value={password}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  password: e.target.value,
+                });
+              }}
             />
           </div>
 
