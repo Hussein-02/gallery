@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../css/styles.css";
 import { useNavigate } from "react-router-dom";
+import getBaseURL from "../utils/baseURL";
 
 const Login = () => {
   // const [email, setEmail] = useState("");
@@ -17,15 +18,11 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost/gallery/gallery-server/api/v1/login.php",
-        form,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${getBaseURL()}/login.php`, form, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.data.success) {
         const token = response.data.token;

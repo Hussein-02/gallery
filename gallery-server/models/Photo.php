@@ -1,5 +1,5 @@
 <?php
-require "FaqSkeleton.php";
+require "photoSkeleton.php";
 require __DIR__ . '/../connection/connection.php';
 
 class Photo extends PhotoSkeleton
