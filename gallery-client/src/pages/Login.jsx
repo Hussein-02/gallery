@@ -11,7 +11,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost/article/article-server/api/v1/login.php",
+        "http://localhost/gallery/gallery-server/api/v1/login.php",
         {
           email: email,
           password: password,

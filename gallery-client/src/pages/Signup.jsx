@@ -14,9 +14,9 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost/article/article-server/api/v1/signup.php",
+        "http://localhost/gallery/gallery-server/api/v1/signup.php",
         {
-          fullname: fullname,
+          full_name: fullname,
           email: email,
           password: password,
         },
@@ -41,7 +41,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="body">
       <h1 className="logo">GALLERY</h1>
       <div className="login-section">
         <h1>Sign Up</h1>
