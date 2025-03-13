@@ -1,18 +1,19 @@
 import React from "react";
-import "./Navbar.css";
-import userIcon from "./assets/icons/user.png";
+import userIcon from "../assets/icons/user.png";
 import { useNavigate } from "react-router-dom";
+import "../css/styles.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    localStorage.removeItem("user_id");
+    navigate("/");
   };
 
   return (
     <nav className="flex navbar">
-      <h1 className="logo">ARTICLE</h1>
+      <h1 className="logo">GALLERY</h1>
       <div>
         <div className="flex center">
           <div className="dropdown">

@@ -8,11 +8,11 @@ $user_id = $data['user_id'];
 $title = $data['title'];
 $description = $data['description'];
 $tags = $data['tags'];
-$base64_image = $data['image'];
+$base64_image = $data['image_path'];
 
 $image_data = base64_decode($base64_image);
 
-$uploadDir = __DIR__ . '../../uploads/';
+$uploadDir = __DIR__ . '/../../uploads/';
 
 //to generate a name for the image
 $fileName = uniqid() . '.jpg';

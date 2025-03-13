@@ -1,5 +1,5 @@
 <?php
-require "FaqSkeleton.php";
+require "photoSkeleton.php";
 require __DIR__ . '/../connection/connection.php';
 
 class Photo extends PhotoSkeleton
@@ -29,7 +29,7 @@ class Photo extends PhotoSkeleton
         $response = $query->get_result();
         $photos = [];
         while ($row = $response->fetch_assoc()) {
-            $phtots[] = $row;
+            $photos[] = $row;
         }
 
         return $photos;
