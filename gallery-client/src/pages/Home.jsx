@@ -1,44 +1,41 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import getBaseURL from "../utils/baseURL";
 
 const Home = () => {
   const [photos, setPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
 
   const fetchPhotos = async () => {
     try {
-      const response = await axios.get(`${getBaseURL}/getPhotos.php`);
-      if (response.data.success) {
-        setQuestions(response.data.questions);
+      const user_id = localStorage.getItem("user_id");
+
+      const response = await axios.get(`${getBaseURL()}/getPhotos.php?user_id=${user_id}`);
+
+      if (response.data.status) {
+        setPhotos(response.data.photos);
       } else {
-        console.error("Failed to fetch questions");
+        console.error("Failed to fetch photos");
       }
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
-  const filteredQuestions = questions.filter(
-    (question) =>
-      question.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      question.answer.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredQuestions = photos.filter(
+    (photo) =>
+      photo.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      photo.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      photo.tags.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   useEffect(() => {
-    fetchQuestions();
+    fetchPhotos();
   }, []);
 
   return (
-    <div>
+    <div className="body">
       <Navbar />
       <div className="search-container">
         <input
@@ -48,16 +45,16 @@ const Home = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <a href="/question" className="plus-a">
+        <a href="/photo" className="plus-a">
           <button className="plus">+</button>
         </a>
       </div>
 
-      <div id="question-cards" className="cards-container">
-        {filteredQuestions.map((question) => (
-          <div key={question.id} className="question-card">
-            <h3>{question.question}</h3>
-            <p>{question.answer}</p>
+      <div id="photo-cards" className="cards-container">
+        {filteredQuestions.map((photo) => (
+          <div key={photo.id} className="photo-card">
+            <h3>{photo.title}</h3>
+            <p>{photo.description}</p>
           </div>
         ))}
       </div>

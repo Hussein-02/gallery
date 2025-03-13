@@ -186,7 +186,7 @@ body {
   padding: 20px;
 }
 
-.question-card {
+.photo-card {
   width: 100%;
   padding: 10px;
   border: 1px solid blue;
@@ -195,13 +195,13 @@ body {
   background-color: #fff;
 }
 
-.question-card h3 {
+.photo-card h3 {
   margin: 0 0 10px;
   font-size: 20px;
   color: #333;
 }
 
-.question-card p {
+.photo-card p {
   margin: 0;
   font-size: 16px;
   color: #666;
@@ -243,18 +243,6 @@ body {
 }
 
 @media (max-width: 576px) {
-  .logo {
-    font-size: 30px;
-  }
-
-  /* .signup-section {
-      font-size: 10px;
-    }
-  
-    .signup-section input {
-      font-size: 10px;
-    } */
-
   .login-input {
     width: 100%;
   }
@@ -265,12 +253,4 @@ body {
   .login-input label {
     margin-left: 5%;
   }
-
-  /* .login-btn {
-      width: 100px;
-    }
-  
-    .signup-btn {
-      width: 100%;
-    } */
 }

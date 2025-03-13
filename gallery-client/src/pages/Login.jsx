@@ -26,6 +26,7 @@ const Login = () => {
 
       if (response.data.success) {
         const token = response.data.token;
+        localStorage.setItem("user_id", response.data.user.id);
         localStorage.setItem("token", token);
 
         navigate("/home");
