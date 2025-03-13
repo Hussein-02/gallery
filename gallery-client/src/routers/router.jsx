@@ -4,8 +4,8 @@ const router = createBrowserRouter([
     element: <App />, // Main layout component
     children: [
       {
-        path: "/", // Home route for '/'
-        element: <Home />,
+        path: "/", // Login route for '/'
+        element: <Login />,
       },
     ],
   },

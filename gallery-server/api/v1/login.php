@@ -5,7 +5,7 @@
 // header("Access-Control-Allow-Methods: POST, OPTIONS");
 // header("Content-Type: application/json; charset=UTF-8");
 
-require __DIR__ . '../../models/User.php';
+require __DIR__ . '/../../models/User.php';
 
 $key = "12345";
 
@@ -52,7 +52,7 @@ if ($user) {
             "token" => $token,
             "user" => [
                 "id" => $user['id'],
-                "fullname" => $user['fullname'],
+                "full_name" => $user['full_name'],
                 "email" => $user['email']
             ]
         ]);
