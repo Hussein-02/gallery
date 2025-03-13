@@ -29,7 +29,7 @@ class Photo extends PhotoSkeleton
         $response = $query->get_result();
         $photos = [];
         while ($row = $response->fetch_assoc()) {
-            $phtots[] = $row;
+            $photos[] = $row;
         }
 
         return $photos;
