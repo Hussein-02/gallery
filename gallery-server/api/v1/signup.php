@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '../../models/User.php';
+require __DIR__ . '/../../models/User.php';
 
 $key = "12345";
 
@@ -25,16 +25,16 @@ function generate_jwt($payload, $key)
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
-if (!$data || !isset($data['fullname']) || !isset($data['email']) || !isset($data['password'])) {
+if (!$data || !isset($data['full_name']) || !isset($data['email']) || !isset($data['password'])) {
     echo json_encode(["success" => false, "message" => "Invalid input: fullname, email, and password are required"]);
     exit;
 }
 
-$fullname = $data['fullname'];
+$fullname = $data['full_name'];
 $email = $data['email'];
 $password = $data['password'];
 
-$existingUser = $user::findByEmail($email);
+$existingUser = User::findByEmail($email);
 if ($existingUser) {
     echo json_encode(["success" => false, "message" => "Email already registered"]);
     exit;

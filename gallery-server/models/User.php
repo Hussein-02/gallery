@@ -11,7 +11,7 @@ class User extends UserSkeleton
 
         $hashedPassword = hash('sha256', self::$password);
 
-        $sql = "INSERT INTO users (fullname,email,password) VALUES (?,?,?)";
+        $sql = "INSERT INTO users (full_name,email,password) VALUES (?,?,?)";
         $query = $conn->prepare($sql);
         $query->bind_param("sss", self::$fullname, self::$email, $hashedPassword);
         $query->execute();
@@ -25,12 +25,15 @@ class User extends UserSkeleton
 
         $sql = "SELECT * FROM users WHERE email = ?";
         $query = $conn->prepare($sql);
-        $query->bind_param("s", self::$email);
+        $query->bind_param("s", $email);
         $query->execute();
 
         $response = $query->get_result();
-        $answer = $response->fetch_assoc();
+        if ($answer = $response->fetch_assoc()) {
 
-        return $answer;
+            return $answer;
+        } else {
+            return null;
+        }
     }
 };

@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '../../models/Photo.php';
+require __DIR__ . '/../../models/Photo.php';
 
 $user_id = $_GET['user_id'];
 
