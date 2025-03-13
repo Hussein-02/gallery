@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../css/styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   // const [email, setEmail] = useState("");
@@ -9,6 +10,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ const Login = () => {
         const token = response.data.token;
         localStorage.setItem("token", token);
 
-        window.location.href = "./home.html";
+        navigate("/home");
       }
     } catch (error) {
       console.error("There was an error!", error);
