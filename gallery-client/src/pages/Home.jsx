@@ -19,11 +19,11 @@ const Home = () => {
         console.error("Failed to fetch photos");
       }
     } catch (error) {
-      console.error("Error fetching questions:", error);
+      console.error("Error fetching photos:", error);
     }
   };
 
-  const filteredQuestions = photos.filter(
+  const filteredPhotos = photos.filter(
     (photo) =>
       photo.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       photo.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -51,7 +51,7 @@ const Home = () => {
       </div>
 
       <div id="photo-cards" className="cards-container">
-        {filteredQuestions.map((photo) => (
+        {filteredPhotos.map((photo) => (
           <div key={photo.id} className="photo-card">
             <h3>{photo.title}</h3>
             <p>{photo.description}</p>
