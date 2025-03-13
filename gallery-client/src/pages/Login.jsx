@@ -16,10 +16,7 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost/gallery/gallery-server/api/v1/login.php",
-        {
-          email: form.email,
-          password: form.password,
-        },
+        form,
         {
           headers: {
             "Content-Type": "application/json",
