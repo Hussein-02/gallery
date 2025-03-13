@@ -22,11 +22,7 @@ const Signup = () => {
     try {
       const response = await axios.post(
         "http://localhost/gallery/gallery-server/api/v1/signup.php",
-        {
-          full_name: form.full_name,
-          email: form.email,
-          password: form.password,
-        },
+        form,
         {
           headers: {
             "Content-Type": "application/json",
