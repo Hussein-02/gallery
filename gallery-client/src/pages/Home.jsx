@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import getBaseURL from "../utils/baseURL";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [photos, setPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const navigate = useNavigate();
 
   const fetchPhotos = async () => {
     try {
@@ -31,6 +34,11 @@ const Home = () => {
   );
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+
     fetchPhotos();
   }, []);
 
@@ -53,6 +61,7 @@ const Home = () => {
       <div id="photo-cards" className="cards-container">
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className="photo-card">
+            <img src={photo.image_path} alt="" />
             <h3>{photo.title}</h3>
             <p>{photo.description}</p>
           </div>

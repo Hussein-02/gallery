@@ -179,7 +179,7 @@ body {
 .cards-container {
   display: grid;
   grid-template-columns: 300px 300px 300px;
-  grid-template-rows: 300px 300px 300px 300px 300px;
+  grid-auto-rows: 300px;
   /* width: 80%; */
   gap: 40px;
   margin: 20px;
@@ -187,11 +187,14 @@ body {
 
 .photo-card {
   width: 100%;
-  padding: 10px;
+  /* padding: 10px; */
   border: 1px solid blue;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photo-card h3 {
@@ -204,6 +207,11 @@ body {
   margin: 0;
   font-size: 16px;
   color: #666;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 80%;
 }
 
 .plus {
@@ -224,12 +232,57 @@ body {
   text-decoration: none;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 2px blue solid;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 6px 12px;
+  width: 70%;
+  cursor: pointer;
+  align-self: center;
+  text-align: center;
+}
+
+.file-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  width: 100%;
+  margin: 10px;
+}
+
+.photo-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  max-width: 600px;
+  height: 65vw;
+  max-height: 630px;
+  background-color: white;
+  border: 2px solid blue;
+  text-align: center;
+}
+
+.photo-section > h1 {
+  font-size: 40px;
+}
+
+.img-result {
+  align-self: center;
+}
+
 /*------------------------------- responsive section------------------- */
 
 @media (max-width: 976px) {
   .cards-container {
     grid-template-columns: 300px 300px;
-    grid-template-rows: 300px 300px 300px 300px 300px;
+    grid-auto-rows: 300px;
   }
 }
 
@@ -248,7 +301,13 @@ body {
   }
   .cards-container {
     grid-template-columns: 200px 200px;
-    grid-template-rows: 200px 200px 200px 200px 200px;
+    grid-auto-rows: 200px;
+  }
+  .photo-section {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    height: 600px;
   }
 }
 
@@ -266,6 +325,6 @@ body {
 
   .cards-container {
     grid-template-columns: 200px;
-    grid-template-rows: 200px 200px 200px 200px 200px;
+    grid-auto-rows: 200px;
   }
 }
