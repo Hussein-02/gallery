@@ -53,6 +53,7 @@ const Home = () => {
       <div id="photo-cards" className="cards-container">
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className="photo-card">
+            <img src={photo.image_path} alt="" />
             <h3>{photo.title}</h3>
             <p>{photo.description}</p>
           </div>
