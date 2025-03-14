@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import getBaseURL from "../utils/baseURL";
 import axios from "axios";
@@ -50,6 +50,13 @@ const Photo = () => {
       };
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="body">
