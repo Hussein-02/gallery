@@ -254,14 +254,19 @@ input[type="file"] {
   align-items: center;
   width: 60vw;
   max-width: 600px;
-  height: 63vw;
+  height: 65vw;
   max-height: 630px;
   background-color: white;
   border: 2px solid blue;
   text-align: center;
 }
+
 .photo-section > h1 {
   font-size: 40px;
+}
+
+.img-result {
+  align-self: center;
 }
 
 /*------------------------------- responsive section------------------- */

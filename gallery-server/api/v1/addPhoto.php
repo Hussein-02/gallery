@@ -1,5 +1,10 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Headers: *');
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Content-Type: application/json; charset=UTF-8");
+
 require __DIR__ . '/../../models/Photo.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
@@ -8,8 +13,9 @@ $user_id = $data['user_id'];
 $title = $data['title'];
 $description = $data['description'];
 $tags = $data['tags'];
-$base64_image = $data['image_path'];
 
+$base64_image = $data['image_path'];
+$base64_image = preg_replace('#^data:image/\w+;base64,#i', '', $base64_image);
 $image_data = base64_decode($base64_image);
 
 $uploadDir = __DIR__ . '/../../uploads/';

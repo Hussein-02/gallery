@@ -1,29 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import getBaseURL from "../utils/baseURL";
+import axios from "axios";
 
 const Photo = () => {
+  const [form, setForm] = useState({
+    user_id: "",
+    title: "",
+    description: "",
+    tags: "",
+    image_path: "",
+  });
+
+  //to get user id
+  const user_id = localStorage.getItem("user_id");
+  form.user_id = user_id;
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    try {
+      const response = await axios.post(`${getBaseURL()}/addPhoto.php`, form, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data.success) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
+  };
+
+  //to get image from form
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setForm({
+          ...form,
+          image_path: reader.result,
+        });
+      };
+    }
+  };
+
   return (
     <div className="body">
       <h1 className="logo">GALLERY</h1>
       <div className="photo-section">
         <h1>Add Photo</h1>
-        <form
-          className="login-form"
-          id="signupForm"
-          // onSubmit={handleSubmit}
-        >
+        <form className="login-form" id="signupForm" onSubmit={handleSubmit}>
           <div className="login-input">
             <label htmlFor="title">Title</label>
             <input
               type="text"
               id="title"
               name="title"
-              // value={title}
-              // onChange={(e) => {
-              //   setForm({
-              //     ...form,
-              //     title: e.target.value,
-              //   });
-              // }}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  title: e.target.value,
+                });
+              }}
             />
           </div>
 
@@ -33,13 +78,12 @@ const Photo = () => {
               type="text"
               id="description"
               name="description"
-              // value={description}
-              // onChange={(e) => {
-              //   setForm({
-              //     ...form,
-              //     description: e.target.value,
-              //   });
-              // }}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  description: e.target.value,
+                });
+              }}
             />
           </div>
 
@@ -49,21 +93,21 @@ const Photo = () => {
               type="text"
               id="tags"
               name="tags"
-              // value={tags}
-              // onChange={(e) => {
-              //   setForm({
-              //     ...form,
-              //     tags: e.target.value,
-              //   });
-              // }}
+              onChange={(e) => {
+                setForm({
+                  ...form,
+                  tags: e.target.value,
+                });
+              }}
             />
           </div>
           <div className="file-input">
-            <label htmlFor="file-upload" className="custom-file-upload">
+            <label htmlFor="image_path" className="custom-file-upload">
               Upload Image
             </label>
 
-            <input id="file-upload" type="file" />
+            <input id="image_path" type="file" onChange={handleImageChange} />
+            {form.image_path && <p className="img-result">Image uploaded</p>}
           </div>
 
           <input type="submit" value="Submit" />
