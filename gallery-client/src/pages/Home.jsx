@@ -61,7 +61,13 @@ const Home = () => {
       <div id="photo-cards" className="cards-container">
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className="photo-card">
-            <img src={photo.image_path} alt="" />
+            <img
+              src="/pen.png"
+              className="edit-card"
+              alt="Edit"
+              onClick={() => navigate("/update", { state: { photo } })}
+            />
+            <img src={photo.image_path} alt="" className="card-image" />
             <h3>{photo.title}</h3>
             <p>{photo.description}</p>
           </div>

@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import getBaseURL from "../utils/baseURL";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Photo = () => {
+const Update = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const photo = location.state?.photo || {};
+
   const [form, setForm] = useState({
-    user_id: "",
-    title: "",
-    description: "",
-    tags: "",
+    photo_id: photo.id,
+    title: photo.title,
+    description: photo.description,
+    tags: photo.tags,
     image_path: "",
   });
-
-  const navigate = useNavigate();
-
-  //to get user id
-  const user_id = localStorage.getItem("user_id");
-  form.user_id = user_id;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${getBaseURL()}/addPhoto.php`, form, {
+      const response = await axios.post(`${getBaseURL()}/updatePhoto.php`, form, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -60,7 +58,7 @@ const Photo = () => {
     <div className="body">
       <h1 className="logo">GALLERY</h1>
       <div className="photo-section">
-        <h1>Add Photo</h1>
+        <h1>Edit Photo</h1>
         <form className="login-form" id="signupForm" onSubmit={handleSubmit}>
           <div className="login-input">
             <label htmlFor="title">Title</label>
@@ -68,6 +66,7 @@ const Photo = () => {
               type="text"
               id="title"
               name="title"
+              value={form.title}
               onChange={(e) => {
                 setForm({
                   ...form,
@@ -83,6 +82,7 @@ const Photo = () => {
               type="text"
               id="description"
               name="description"
+              value={form.description}
               onChange={(e) => {
                 setForm({
                   ...form,
@@ -98,6 +98,7 @@ const Photo = () => {
               type="text"
               id="tags"
               name="tags"
+              value={form.tags}
               onChange={(e) => {
                 setForm({
                   ...form,
@@ -122,4 +123,4 @@ const Photo = () => {
   );
 };
 
-export default Photo;
+export default Update;
