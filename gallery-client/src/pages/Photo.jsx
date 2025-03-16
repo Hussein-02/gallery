@@ -20,14 +20,12 @@ const Photo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     try {
       const response = await axios.post(`${getBaseURL()}/addPhoto.php`, form, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
       if (response.data.status) {
         navigate("/home");
       }

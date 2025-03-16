@@ -1,5 +1,10 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Headers: *');
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Content-Type: application/json; charset=UTF-8");
+
 require __DIR__ . '/../../models/Photo.php';
 
 
@@ -13,6 +18,7 @@ $base64_image = $data['image'] ?? null;
 
 $image_path = null;
 if ($base64_image) {
+
     $image_data = base64_decode($base64_image);
     if ($image_data === false) {
         http_response_code(400);
@@ -23,7 +29,7 @@ if ($base64_image) {
         exit();
     }
 
-    $uploadDir = __DIR__ . '/../../uploads/';
+    $uploadDir = __DIR__ . '/../../public/uploads/';
 
     $fileName = uniqid() . '.jpg';
     $uploadPath = $uploadDir . $fileName;

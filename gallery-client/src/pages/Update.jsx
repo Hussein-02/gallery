@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import getBaseURL from "../utils/baseURL";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Update = () => {
-  const [form, setForm] = useState({
-    user_id: "",
-    title: "test",
-    description: "",
-    tags: "",
-    image_path: "",
-  });
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const photo = location.state?.photo || {};
 
-  //to get user id
-  const user_id = localStorage.getItem("user_id");
-  form.user_id = user_id;
+  const [form, setForm] = useState({
+    photo_id: photo.id,
+    title: photo.title,
+    description: photo.description,
+    tags: photo.tags,
+    image: "",
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     try {
       const response = await axios.post(`${getBaseURL()}/updatePhoto.php`, form, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
       if (response.data.status) {
         navigate("/home");
       }
@@ -56,24 +52,6 @@ const Update = () => {
     if (!token) {
       navigate("/");
     }
-
-    async (e) => {
-      e.preventDefault();
-      console.log(form);
-      try {
-        const response = await axios.post(`${getBaseURL()}/getPhoto.php`, form, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        console.log(response.data);
-        if (response.data.status) {
-          navigate("/home");
-        }
-      } catch (error) {
-        console.error("There was an error!", error);
-      }
-    };
   }, []);
 
   return (
@@ -104,6 +82,7 @@ const Update = () => {
               type="text"
               id="description"
               name="description"
+              value={form.description}
               onChange={(e) => {
                 setForm({
                   ...form,
@@ -119,6 +98,7 @@ const Update = () => {
               type="text"
               id="tags"
               name="tags"
+              value={form.tags}
               onChange={(e) => {
                 setForm({
                   ...form,
