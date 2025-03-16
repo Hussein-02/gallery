@@ -13,7 +13,7 @@ const Update = () => {
     title: photo.title,
     description: photo.description,
     tags: photo.tags,
-    image: "",
+    image_path: "",
   });
 
   const handleSubmit = async (e) => {
