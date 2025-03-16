@@ -5,27 +5,32 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Home from "../pages/Home";
 import Photo from "../pages/Photo";
+import Update from "../pages/Update";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // Main layout component
+    element: <App />,
     children: [
       {
-        path: "/", // Login route for '/'
+        path: "/",
         element: <Login />,
       },
       {
-        path: "/signup", // Login route for '/'
+        path: "/signup",
         element: <Signup />,
       },
       {
-        path: "/home", // Login route for '/'
+        path: "/home",
         element: <Home />,
       },
       {
-        path: "/photo", // Login route for '/'
+        path: "/photo",
         element: <Photo />,
+      },
+      {
+        path: "/update",
+        element: <Update />,
       },
     ],
   },

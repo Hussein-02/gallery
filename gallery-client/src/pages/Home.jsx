@@ -61,7 +61,10 @@ const Home = () => {
       <div id="photo-cards" className="cards-container">
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className="photo-card">
-            <img src={photo.image_path} alt="" />
+            <a href="/update">
+              <img src="/pen.png" className="edit-card" alt="" />
+            </a>
+            <img src={photo.image_path} alt="" className="card-image" />
             <h3>{photo.title}</h3>
             <p>{photo.description}</p>
           </div>

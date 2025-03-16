@@ -39,6 +39,7 @@ const Login = () => {
   return (
     <div className="body">
       <h1 className="logo">GALLERY</h1>
+      {/* <img src="/logo.svg" alt="" /> */}
       <div className="login-section">
         <h1>Log In</h1>
         <form className="login-form" id="loginForm" onSubmit={handleSubmit}>
@@ -76,7 +77,7 @@ const Login = () => {
 
           <input type="submit" value="Log In" className="login-btn" />
         </form>
-        <a href="./signup.html">
+        <a href="./signup">
           <button className="signup-btn">Sign Up</button>
         </a>
       </div>

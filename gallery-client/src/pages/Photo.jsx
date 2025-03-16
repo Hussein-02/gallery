@@ -12,11 +12,11 @@ const Photo = () => {
     image_path: "",
   });
 
+  const navigate = useNavigate();
+
   //to get user id
   const user_id = localStorage.getItem("user_id");
   form.user_id = user_id;
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,8 +27,8 @@ const Photo = () => {
           "Content-Type": "application/json",
         },
       });
-
-      if (response.data.success) {
+      console.log(response.data);
+      if (response.data.status) {
         navigate("/home");
       }
     } catch (error) {
