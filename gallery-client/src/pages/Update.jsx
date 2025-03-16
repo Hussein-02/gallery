@@ -6,7 +6,7 @@ import axios from "axios";
 const Update = () => {
   const [form, setForm] = useState({
     user_id: "",
-    title: "",
+    title: "test",
     description: "",
     tags: "",
     image_path: "",
@@ -56,6 +56,24 @@ const Update = () => {
     if (!token) {
       navigate("/");
     }
+
+    async (e) => {
+      e.preventDefault();
+      console.log(form);
+      try {
+        const response = await axios.post(`${getBaseURL()}/getPhoto.php`, form, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(response.data);
+        if (response.data.status) {
+          navigate("/home");
+        }
+      } catch (error) {
+        console.error("There was an error!", error);
+      }
+    };
   }, []);
 
   return (
@@ -70,6 +88,7 @@ const Update = () => {
               type="text"
               id="title"
               name="title"
+              value={form.title}
               onChange={(e) => {
                 setForm({
                   ...form,

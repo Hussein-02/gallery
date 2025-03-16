@@ -279,16 +279,12 @@ input[type="file"] {
 }
 
 .edit-card {
+  position: absolute;
   background-color: white;
   border: 2px blue solid;
   border-radius: 5px;
   height: 30px;
   width: 30px;
-  align-self: flex-end;
-}
-
-.photo-card a {
-  position: absolute;
   align-self: flex-end;
   margin: 10px;
 }
