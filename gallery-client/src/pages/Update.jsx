@@ -47,6 +47,23 @@ const Update = () => {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete(`${getBaseURL()}/deletePhoto.php`, {
+        data: { photo_id: form.photo_id },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.data.status) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -117,6 +134,9 @@ const Update = () => {
           </div>
 
           <input type="submit" value="Submit" />
+          <button className="signup-btn" onClick={handleDelete}>
+            Delete Photo
+          </button>
         </form>
       </div>
     </div>
